@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nothing Ever Happens</title>
+    
+    <!-- Simple SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='40'%20stroke='%23888'%20stroke-width='8'%20fill='none'/%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Xanh Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for animations -->
+    <style>
+        body {
+            font-family: 'Xanh Mono', monospace;
+            background-color: #0a0a0a;
+            color: #888;
+            overflow-x: hidden;
+        }
+
+        /* Glitch effect for the main title */
+        .neon-glitch {
+            color: #ccc;
+            text-shadow: 0 0 5px rgba(204, 204, 204, 0.2), 0 0 10px rgba(77, 192, 255, 0.2);
+            animation: glitch-main 15s infinite linear;
+        }
+
+        .neon-glitch::before,
+        .neon-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .neon-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip-path: inset(50% 0 50% 0);
+            animation: glitch-before 5s infinite linear alternate-reverse;
+        }
+
+        .neon-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            clip-path: inset(50% 0 50% 0);
+            animation: glitch-after 3s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-main {
+            0% { opacity: 1; } 95% { opacity: 1; } 96% { opacity: 0.3; } 97% { opacity: 1; } 98% { opacity: 0.3; } 99% { opacity: 1; } 100% { opacity: 0.3; }
+        }
+
+        @keyframes glitch-before {
+            0% { clip-path: inset(85% 0 10% 0); } 10% { clip-path: inset(5% 0 60% 0); } 20% { clip-path: inset(70% 0 5% 0); } 30% { clip-path: inset(45% 0 45% 0); } 40% { clip-path: inset(10% 0 80% 0); } 50% { clip-path: inset(95% 0 2% 0); } 60% { clip-path: inset(30% 0 50% 0); } 70% { clip-path: inset(50% 0 30% 0); } 80% { clip-path: inset(20% 0 75% 0); } 90% { clip-path: inset(60% 0 20% 0); } 100% { clip-path: inset(90% 0 5% 0); }
+        }
+        
+        @keyframes glitch-after {
+            0% { clip-path: inset(15% 0 70% 0); transform: translate(0, 0); } 10% { clip-path: inset(40% 0 30% 0); transform: translate(-5px, 0); } 20% { clip-path: inset(80% 0 5% 0); transform: translate(5px, 0); } 30% { clip-path: inset(25% 0 55% 0); transform: translate(-4px, 0); } 40% { clip-path: inset(5% 0 90% 0); transform: translate(4px, 0); } 50% { clip-path: inset(60% 0 30% 0); transform: translate(-3px, 0); } 60% { clip-path: inset(30% 0 60% 0); transform: translate(3px, 0); } 70% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 0); } 80% { clip-path: inset(45% 0 35% 0); transform: translate(2px, 0); } 90% { clip-path: inset(90% 0 2% 0); transform: translate(-1px, 0); } 100% { clip-path: inset(5% 0 80% 0); transform: translate(1px, 0); }
+        }
+
+        /* News ticker scroll animation */
+        .news-ticker {
+            display: flex;
+            animation: scroll-loop 120s linear infinite; /* Increased duration for more content */
+        }
+
+        @keyframes scroll-loop {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Scroll halfway for seamless loop */
+        }
+
+        /* Timeline fade animation */
+        .timeline-update {
+            animation: subtle-fade 8s infinite;
+        }
+        @keyframes subtle-fade {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Styling for the individual news cards */
+        .news-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            margin: 0 0.75rem;
+            width: 22rem;
+            height: 6rem;
+            background-color: rgba(17, 24, 39, 0.5);
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-shrink: 0; /* Prevent cards from shrinking */
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="h-full bg-[#0a0a0a] flex flex-col items-center justify-center relative antialiased">
+
+    <!-- Background video container -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10">
+        <video 
+            class="w-full h-full object-cover opacity-5" 
+            src="https://cdn.pixabay.com/video/2021/09/23/88283-619864273_large.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            onerror="this.style.display='none'">
+        </video>
+    </div>
+
+    <!-- Main content -->
+    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center">
+
+        <!-- Main title -->
+        <h1 data-text="Nothing Ever Happens" class="text-4xl md:text-6xl lg:text-7xl font-bold neon-glitch select-none relative">
+            Nothing Ever Happens
+        </h1>
+        
+        <!-- Container for the news button and its message -->
+        <div class="relative flex flex-col items-center mt-8">
+            <!-- Check for News button -->
+            <button id="news-button" class="px-4 py-2 border border-gray-700 rounded text-gray-500 hover:bg-gray-800 hover:text-gray-300 transition-colors duration-300">
+                Check for News
+            </button>
+            <!-- "Still Nothing" message box -->
+            <div id="news-message" class="text-gray-600 transition-all duration-500 ease-in-out max-h-0 opacity-0 overflow-hidden">
+                Still Nothing
+            </div>
+        </div>
+
+        <!-- Timeline section -->
+        <div class="absolute top-8 left-8 text-left text-sm opacity-50 hidden md:block">
+            <h2 class="text-gray-500">// TIMELINE</h2>
+            <p class="timeline-update text-gray-600 mt-1">No updates</p>
+        </div>
+        
+        <!-- Navigation menu button -->
+        <button id="nav-toggle" class="absolute top-6 right-6 w-10 h-10 p-2 text-gray-600 hover:text-gray-400 transition-colors duration-300 focus:outline-none" aria-label="Toggle News Feed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+    </div>
+
+    <!-- Hidden news feed section -->
+    <div id="news-feed" class="fixed inset-x-0 bottom-0 bg-black/60 backdrop-blur-md p-4 transform translate-y-full transition-transform duration-500 ease-in-out z-20 border-t border-gray-800">
+        <div class="w-full mx-auto relative"> <!-- Removed max-w-7xl -->
+             <!-- Close button for the feed -->
+            <button id="close-feed" class="absolute -top-2 right-2 text-gray-500 hover:text-white transition-colors z-30 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-center text-lg text-gray-500 mb-4">// Uninteresting Times - Live Feed</h2>
+            <div class="overflow-hidden">
+                <div class="news-ticker">
+                    <!-- Increased number of cards to prevent gaps on wide screens -->
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">No Updates Today</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Global Standstill Continues</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Weather: Same as Yesterday</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Man Stares Blankly at Wall; Reports No Change</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Local Puddle Fails to Evaporate on Schedule</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">No Updates Today</h3>
+                    </div>
+
+                    <!-- Duplicates for seamless scroll -->
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">No Updates Today</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Global Standstill Continues</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Weather: Same as Yesterday</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Man Stares Blankly at Wall; Reports No Change</h3>
+                    </div>
+                    <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">Local Puddle Fails to Evaporate on Schedule</h3>
+                    </div>
+                     <div class="news-card">
+                        <h3 class="text-gray-400 font-semibold">No Updates Today</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Count-up timer and Socials -->
+    <footer class="absolute bottom-4 left-0 right-0 px-4 text-center text-xs text-gray-600 z-10 w-full">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="https://x.com/AVAmirVA" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+            </a>
+            <p>Nothing has happened for: <span id="timer" class="tabular-nums">00:00:00</span></p>
+            <div class="w-5"></div> <!-- Spacer to balance the layout -->
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Element selection ---
+            const timerElement = document.getElementById('timer');
+            const navToggle = document.getElementById('nav-toggle');
+            const newsFeed = document.getElementById('news-feed');
+            const newsButton = document.getElementById('news-button');
+            const newsMessage = document.getElementById('news-message');
+            const closeFeedButton = document.getElementById('close-feed');
+            
+            // --- Count-up timer ---
+            const startTime = Date.now();
+            function updateTimer() {
+                const elapsedTime = Date.now() - startTime;
+                const totalSeconds = Math.floor(elapsedTime / 1000);
+                
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+                const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+                timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+
+            // --- Navigation menu toggle ---
+            navToggle.addEventListener('click', () => {
+                newsFeed.classList.toggle('translate-y-full');
+            });
+
+            // --- Close feed button ---
+            closeFeedButton.addEventListener('click', () => {
+                newsFeed.classList.add('translate-y-full');
+            });
+
+            // --- News button click ---
+            newsButton.addEventListener('click', () => {
+                // Show the message
+                newsMessage.classList.add('max-h-12', 'opacity-100', 'mt-4');
+                
+                // Set a timer to hide it again
+                setTimeout(() => {
+                    newsMessage.classList.remove('max-h-12', 'opacity-100', 'mt-4');
+                }, 2000); // Message visible for 2 seconds
+            });
+        });
+    </script>
+
+</body>
+</html>
